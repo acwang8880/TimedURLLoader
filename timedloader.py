@@ -3,6 +3,11 @@ import webbrowser
 #Let's also make a poem-generator! Anyway...
 
 url = "www.google.com"
-webbrowser.open_new(url)
+# webbrowser.open_new(url)
 
-print(datetime.now())
+array = str(datetime.now()).split(" ")
+date = array[0]
+time = array[1]
+
+print(date)
+print(time)
