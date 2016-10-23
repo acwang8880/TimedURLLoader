@@ -1,12 +1,23 @@
 from datetime import datetime
 import webbrowser
+import os
 #Let's also make a poem-generator! Anyway...
 
+# fields
 url = "www.google.com"
 urls = [url, "www.yahoo.com", "www.youtube.com"]
+path = ".\database.txt"
+
+
 array = str(datetime.now()).split(" ")
 currtime = array[1][:5]
-print(currtime)
+print("Current Time: " + currtime)
+
+
+#create file if does not exist
+# if not os.path.isfile(path):
+# 	file = open("database.txt", "w")
+# 	file.close
 
 
 data = {"00:29:00" : (url, "www.yahoo.com", "www.youtube.com"),
@@ -19,10 +30,6 @@ data = {"00:29:00" : (url, "www.yahoo.com", "www.youtube.com"),
 
 # for s in urls:
 #     webbrowser.open_new(s)
-
-
-data = {"00:29" : [url, "www.yahoo.com", "www.youtube.com"],
-        "00:30" : ["www.twitter.com", "www.stackexchange.com"]}
 
 def printData():
     for time in data:
@@ -67,4 +74,12 @@ printData()
 # 2) Input reader
 # 3) webbrowser opens URL
 # 4) Write to file
-# 5) 
+def updateFile():
+	file = open(path, "w+") # "w+" means overwrite all contents of the file
+	for key in data:
+		file.write("\n")
+		file.write(key)
+		for url in data[key]:
+			file.write("--" + url)
+updateFile()
+# 5) Read in file
