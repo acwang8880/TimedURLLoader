@@ -20,22 +20,24 @@ print("Current Time: " + currtime)
 # 	file.close
 
 
-data = {"00:29:00" : (url, "www.yahoo.com", "www.youtube.com"),
-        "00:30:00" : ("www.twitter.com", "www.stackexchange.com")}
+data = {"22:06" : [url, "www.yahoo.com", "www.youtube.com"],
+        "00:30:00" : ["www.twitter.com", "www.stackexchange.com"]}
 
 
 #Things to do:
 # 1) Data structure
 # example of a tuple 
+# Remove a time if it maps to nothing
 
 # for s in urls:
 #     webbrowser.open_new(s)
+
 
 def printData():
     for time in data:
         print(time)
         for thing in data[time]:
-            print("   " + thing)
+        	print("   " + thing)
             
 def add(time, url):
     if time not in data:
@@ -59,7 +61,7 @@ add("00:31", "www.github.com")
 # 1a)        Modify the data structure
 
         
-add("00:31", "www.calcentral.berkeley.edu")
+add("22:03", "https://calcentral.berkeley.edu/dashboard")
 
 printData()
 
@@ -67,19 +69,51 @@ remove("00:31", "www.github.com")
 print("--------------------------")
 
 printData()
-# for s in urls:
-#     webbrowser.open_new(s)
-
 
 # 2) Input reader
 # 3) webbrowser opens URL
 # 4) Write to file
 def updateFile():
-	file = open(path, "w+") # "w+" means overwrite all contents of the file
+	filename = open(path, "w+") # "w+" means overwrite all contents of the file
 	for key in data:
-		file.write("\n")
-		file.write(key)
+		filename.write("\n")
+		filename.write(key)
 		for url in data[key]:
-			file.write("--" + url)
+			filename.write("--" + url)
+	filename.close()
+
 updateFile()
+
 # 5) Read in file
+
+#Reads given file name and puts data in array
+def readFile(filename):
+	file = open(filename)
+	times_and_urls = file.readlines()
+	file.close()
+	times_and_urls = [group.split("--") for group in times_and_urls[1:]]
+	#removes "\n" at the end of the URLs
+	for group in times_and_urls[:len(times_and_urls)-1]:
+		group[len(group)-1] = group[len(group)-1][:len(group[len(group)-1]) - 1]
+	return times_and_urls
+
+#Updates the data dictionary given a correctly formatted file
+def updateData(filename):
+	for group in readFile(filename):
+		time = group[0]
+		for url in group[1:]:
+			add(time, url)
+
+#Opens URL at given time. Not sure if this is how it works...
+"""
+def run():
+	on = True
+	while on:
+	 	array = str(datetime.now()).split(" ")
+	 	currtime = array[1][:5]
+	 	for time in data:
+	 		if time == currtime:
+	 			for url in data[time]:
+	 				webbrowser.open_new(url)
+	 			on = False #must find way to open URL once then continue running
+	 			"""
