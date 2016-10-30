@@ -1,6 +1,7 @@
 from datetime import datetime
 import webbrowser
 import os
+import time
 #Let's also make a poem-generator! Anyway...
 
 # fields
@@ -105,6 +106,7 @@ def updateData(filename):
 			add(time, url)
 
 #Opens URL at given time. Not sure if this is how it works...
+# Yeah that's the general idea!
 """
 def run():
 	on = True
@@ -112,8 +114,11 @@ def run():
 	 	array = str(datetime.now()).split(" ")
 	 	currtime = array[1][:5]
 	 	for time in data:
+	 		print("Currtime: " + currtime)
+	 		print("Set time: " + time)
 	 		if time == currtime:
 	 			for url in data[time]:
 	 				webbrowser.open_new(url)
 	 			on = False #must find way to open URL once then continue running
+	 	time.sleep(60)		#this will be the solution to your question. aka pauses for a minute and checks again
 	 			"""
