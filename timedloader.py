@@ -2,6 +2,7 @@ from datetime import datetime
 import webbrowser
 import os
 import time
+import copy 	
 #Let's also make a poem-generator! Anyway...
 
 # fields
@@ -21,8 +22,7 @@ print("Current Time: " + currtime)
 # 	file.close
 
 
-data = {"22:06" : [url, "www.yahoo.com", "www.youtube.com"],
-        "00:30:00" : ["www.twitter.com", "www.stackexchange.com"]}
+data = {}
 
 
 #Things to do:
@@ -40,41 +40,51 @@ def printData():
         for thing in data[time]:
         	print("   " + thing)
             
-def add(time, url):
-    if time not in data:
-        data[time] = [url]
+def add(t, url, destination):
+    if t not in destination:
+        destination[t] = [url]
     else:
-        data[time].append(url)
+        destination[t].append(url)
         
-def remove(time, url):
+def remove(t, url):
     #what if time does not exist?
     #what if url does not exist? (question of existence)
-    assert time in data
-    assert url in data[time]
-    data[time].remove(url)
+    assert t in data
+    assert url in data[t]
+    data[t].remove(url)
 
-    
-add("00:31", "www.github.com")
+def removeTime(t):
+	assert t in data
+	del data[t]
+	print("Removed URLs associated with: " + t)   
+
+def removeURL(url):
+	for keys in data:
+		for urls in data[keys]:
+			 if urls == url:
+			 	remove(keys, url)
+			 	print("Removed url: " + url)
+	print("No instance of " + url)
+	
 
 
 #Things to do:
 # 1)     Data structure
 # 1a)        Modify the data structure
 
-        
-add("22:03", "https://calcentral.berkeley.edu/dashboard")
-
-printData()
-
-remove("00:31", "www.github.com")
-print("--------------------------")
-
-printData()
-
 # 2) Input reader
 # 3) webbrowser opens URL
 # 4) Write to file
+def cleanData():
+	newData = copy.deepcopy(data)
+	for key in data:
+		if not data[key]:
+			del newData[key]
+	return newData
+
 def updateFile():
+
+	data = cleanData()
 	filename = open(path, "w+") # "w+" means overwrite all contents of the file
 	for key in data:
 		filename.write("\n")
@@ -82,8 +92,6 @@ def updateFile():
 		for url in data[key]:
 			filename.write("--" + url)
 	filename.close()
-
-updateFile()
 
 # 5) Read in file
 
@@ -107,18 +115,25 @@ def updateData(filename):
 
 #Opens URL at given time. Not sure if this is how it works...
 # Yeah that's the general idea!
-"""
+
 def run():
 	on = True
 	while on:
 	 	array = str(datetime.now()).split(" ")
 	 	currtime = array[1][:5]
-	 	for time in data:
-	 		print("Currtime: " + currtime)
-	 		print("Set time: " + time)
-	 		if time == currtime:
-	 			for url in data[time]:
+	 	for t in data:
+	 		# print("Currtime: " + currtime)
+	 		# print("Set time: " + t)
+	 		if t == currtime:
+	 			for url in data[t]:
 	 				webbrowser.open_new(url)
-	 			on = False #must find way to open URL once then continue running
-	 	time.sleep(60)		#this will be the solution to your question. aka pauses for a minute and checks again
-	 			"""
+	 			#on = False #must find way to open URL once then continue running
+	 			time.sleep(60)		#this will be the solution to your question. aka pauses for a minute and checks again
+	 			
+
+# Begin testing
+add("18:58", "www.google.com", data)
+removeURL("www.google.com")
+updateFile()
+
+run()
