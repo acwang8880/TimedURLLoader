@@ -117,8 +117,7 @@ def updateData(filename):
 # Yeah that's the general idea!
 
 def run():
-	on = True
-	while on:
+	while True:
 	 	array = str(datetime.now()).split(" ")
 	 	currtime = array[1][:5]
 	 	for t in data:
@@ -130,6 +129,16 @@ def run():
 	 			#on = False #must find way to open URL once then continue running
 	 			time.sleep(60)		#this will be the solution to your question. aka pauses for a minute and checks again
 	 			
+# option to change data before running
+def main():
+	in = input("View Data (V) | Add Entry (A) | Delete Entry (D) [time/url] | Cancel (X): ")
+	switcher = {
+		"V": lambda: printData,
+		"A": lambda: add() #fill in
+		"D": lambda: #parse data and find whether is time or url
+		"X": lambda: run()
+	} func = switcher.get(in, lambda: "nothing")
+	return func()
 
 # Begin testing
 add("18:58", "www.google.com", data)
