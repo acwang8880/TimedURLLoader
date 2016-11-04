@@ -1,0 +1,2 @@
+If this application tests alright, do you want to 
+just start developing on google chrome?
