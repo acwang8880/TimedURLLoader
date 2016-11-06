@@ -1,2 +1,3 @@
-If this application tests alright, do you want to 
-just start developing on google chrome?
+Started manifest skeleton
+Need to organize architecture of extension, which looks like it should be a running background script
+
