@@ -9,7 +9,8 @@
 	// },
 
 	"browser_action": {
-		"default_icon": "Timer.png"
+		"default_icon": "Timer.png",
+		"popup": "popup.html"
 	}
 
 	// "background": { //background page in html, and/or uses a script
