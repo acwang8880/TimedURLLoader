@@ -1,6 +1,6 @@
 {
 	"manifest_version": 2,
-	"name": "Extension name",
+	"name": "BerkeleyChime",
 	"version": "1.0",
 	
 	"description": "Timed URL Loader that opens a given URL at a specified time.",
@@ -10,7 +10,7 @@
 
 	"browser_action": {
 		"default_icon": "Timer.png",
-		"popup": "popup.html"
+		"default_popup": "popup.html"
 	}
 
 	// "background": { //background page in html, and/or uses a script
