@@ -5,16 +5,20 @@
 	
 	"description": "Timed URL Loader that opens a given URL at a specified time.",
 
-	"icons": { //icons in png format },
-	},
+	// "icons": { //icons in png format },
+	// },
 
-	"background": { //background page in html, and/or uses a script
-		"persistent": true, //opens background page that consistently runs" 
-		"page": , //html
-		"script": , //JavaScript
-	},
+	"browser_action": {
+		"default_icon": "Timer.png"
+	}
 
-	"permissions": [
-		"background" //allows extension to run as soon as user logs into computer
-	]
+	// "background": { //background page in html, and/or uses a script
+	// 	"persistent": true, //opens background page that consistently runs" 
+	// 	"page": , //html
+	// 	"script": , //JavaScript
+	// },
+
+	// "permissions": [
+	// 	"background" //allows extension to run as soon as user logs into computer
+	// ]
 }
