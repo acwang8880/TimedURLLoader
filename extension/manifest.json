@@ -13,6 +13,10 @@
 		"default_popup": "popup.html"
 	}
 
+	"chrome_url_overrides": {
+		"newtab": "newTab.html"
+	}
+
 	// "background": { //background page in html, and/or uses a script
 	// 	"persistent": true, //opens background page that consistently runs" 
 	// 	"page": , //html

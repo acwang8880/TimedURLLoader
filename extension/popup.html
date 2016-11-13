@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<!DOCTYPE html>
 <html>
 <head>
 	<title>Welcome!</title>
@@ -7,21 +6,45 @@
 </head>
 <body>
 
-	<img src="https://www.rover.com/blog/wp-content/uploads/2015/05/dog-candy-junk-food-599x340.jpg"/>
+	<!-- <img src="https://www.rover.com/blog/wp-content/uploads/2015/05/dog-candy-junk-food-599x340.jpg" alt="Dont feed your dog chocolate" style="width: 300px;height: 170px;"/> -->
 	<div style="width: 100%; display: table;">
 		<div style="display: table-row">
-			<div style="width: 600px; display: table-cell;"> LEFT
+			<div style="width: 800px; display: table-cell;">
 				<form action="action.php">
-					Time:<br>
-					<input type="text" name="time" value="">
-					<br>
-					URL:<br>
-					<input type="text" name="url" value="">
-					<br><br>
-					<input type="submit" value="Submit">
+
+				<table style="width: 100%">
+					<tr>
+						<th>Hour:</th>
+						<th>Minute:</th>
+						<th>AM/PM</th>
+					</tr>
+					<tr>
+						<td><input type="text" name="time" value="" style="width:50px"></td>
+						</td><input type="text" name="time" value="" style="width:50px"></td>
+						<td>
+							<select>
+								<option value="AM">AM</option>
+								<option value="PM">PM</option>
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<td>URL:</td>
+						<input type="text" name="url" value="">
+						<br><br>
+					</tr>
+				</table>
+				
+				<input type="submit" value="Submit">
+
 				</form>
 			</div>
-			<div style="display; table-cell;"> RIGHT </div>
+
+<!-- 			<div style="display; table-cell;"> 
+			
+
+
+			</div> -->
 			
 		</div>
 	</div>
