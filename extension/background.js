@@ -1,7 +1,7 @@
 var url, urls, path, data;
 url = "www.google.com";
 urls = [ url, "www.yahoo.com", "www.youtube.com" ];
-path = ".database.txt";
+filepath = "./database.txt";
 
 data = [];
 
@@ -21,6 +21,29 @@ function add(t, url, destination) {
 		destination[t].push(url);
 	}
 }
+
+//check existence of recovery file. If not, makes a new recovery file
+function readSingleFile(e) {
+	var file = e.target.files[0];
+	if (!file) {
+	  return;
+	}
+	var reader = new FileReader();
+	reader.onload = function(e) {
+	  var contents = e.target.result;
+	  displayContents(contents);
+	};
+	reader.readAsText(file);
+}
+
+function displayContents(contents) {
+	var element = document.getElementById('file-content');
+	element.innerHTML = contents;
+}
+
+document.getElementById('file-input')
+  .addEventListener('change', readSingleFile, false);
+
 
 function remove(t, url, data) {
     if (!(t in data) || !contains(url, data[t])) {

@@ -1,3 +1,0 @@
-Started manifest skeleton
-Need to organize architecture of extension, which looks like it should be a running background script
-
